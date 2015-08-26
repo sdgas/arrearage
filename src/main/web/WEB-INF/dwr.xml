@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN" "http://getahead.org/dwr/dwr30.dtd">
+<dwr>
+    <allow>
+
+        <!--<convert match="org.sdgas.model.ContractName" converter="bean"/>
+         <convert match="org.sdgas.model.Sex" converter="enum"/>-->
+
+        <!--<create creator="spring" javascript="positionService">
+            &lt;!&ndash;  由spring管理的业务类对象  ***Service   &ndash;&gt;
+            <param name="beanName" value="positionServiceImpl"/>
+            &lt;!&ndash;指定可供远程调用的以为方法&ndash;&gt;
+        </create>-->
+
+    </allow>
+</dwr>
