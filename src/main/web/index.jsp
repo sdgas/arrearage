@@ -11,7 +11,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
             + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
+            + path;
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -25,12 +25,12 @@
     <meta http-equiv="expires" content="0">
     <meta http-equiv="X-UA-Compatible" content="IE=8"/>
 
-    <link rel="stylesheet" href="<%=basePath%>css/base2.css">
+    <link rel="stylesheet" href="<%=basePath%>/css/base2.css">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="<%=basePath%>js/jquery.min.js"></script>
+    <script src="<%=basePath%>/js/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="<%=basePath%>js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">
+    <script src="<%=basePath%>/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="<%=basePath%>/css/bootstrap.min.css">
 
 
     <%--加载dwr--%>
