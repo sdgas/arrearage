@@ -26,7 +26,7 @@
         <c:if test="${session.person != null}">
             <%--<span style="font-family:'微软雅黑'; color: #000000; position: absolute;top: 3px;right: 18%;">欢迎 ${person.position.positionName}&nbsp&nbsp${person.userName}&nbsp--%>
 			<span style="font-family:'微软雅黑'; color: #000000;">欢迎
-				${person.position.positionName}&nbsp&nbsp${person.userName}&nbsp; <a
+				${person.remark}&nbsp&nbsp${person.userName}&nbsp; <a
                         href="<%=basePath%>/page/user/alterPwd.jsp">修改密码</a> <a
                         href="Login!loginOut.action">退出</a>
 			</span>
@@ -58,7 +58,7 @@
         </button>
         <ul class="dropdown-menu" role="menu">
             <li>
-                <a href="<%=basePath%>/page/contract/addContract.jsp"> 上传欠费信息 </a>
+                <a href="<%=basePath%>/page/core/DateOperation.jsp"> 上传欠费信息 </a>
             </li>
             <li class="divider"></li>
             <li>

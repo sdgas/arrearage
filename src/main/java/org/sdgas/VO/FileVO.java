@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class FileVO extends BaseVO {
 
-    private File file;
+    private File uploadFile;
     private String dbName;
     private String filePath;
     private String fileName;
@@ -43,14 +43,6 @@ public class FileVO extends BaseVO {
         this.fileName = fileName;
     }
 
-    public File getFile() {
-        return file;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
-    }
-
     public String getDbName() {
         return dbName;
     }
@@ -59,4 +51,11 @@ public class FileVO extends BaseVO {
         this.dbName = dbName;
     }
 
+    public File getUploadFile() {
+        return uploadFile;
+    }
+
+    public void setUploadFile(File uploadFile) {
+        this.uploadFile = uploadFile;
+    }
 }

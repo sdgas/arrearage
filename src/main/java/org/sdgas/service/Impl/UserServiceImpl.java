@@ -1,4 +1,4 @@
-package org.sdgas.service.impl;
+package org.sdgas.service.Impl;
 
 import org.sdgas.base.DaoSupport;
 import org.sdgas.model.User;

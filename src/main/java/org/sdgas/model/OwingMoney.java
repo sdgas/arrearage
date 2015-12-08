@@ -80,7 +80,7 @@ public class OwingMoney {
     /**
      * 账期数
      */
-    private String period;
+    //private String period;
 
 
     @Id
@@ -201,12 +201,12 @@ public class OwingMoney {
         this.remark = remark;
     }
 
-    @ExcelResources(order = 13, title = "账期数")
+    /*@ExcelResources(order = 13, title = "账期数")
     public String getPeriod() {
         return period;
     }
 
     public void setPeriod(String period) {
         this.period = period;
-    }
+    }*/
 }

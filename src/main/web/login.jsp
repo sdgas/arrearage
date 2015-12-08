@@ -1,4 +1,3 @@
-<%--<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>--%>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ include file="/page/share/taglib.jsp" %>
 <%
@@ -12,7 +11,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>合同管理系统</title>
+    <title>客户欠费管理</title>
 
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">

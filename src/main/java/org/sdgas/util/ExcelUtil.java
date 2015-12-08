@@ -272,6 +272,7 @@ public class ExcelUtil {
             Row row = sheet.getRow(readLine);  //开始行，主题栏
             objs = new ArrayList<Object>();
             Map<Integer, String> maps = getHeaderMap(row, clz);   //设定对应的字段顺序与方法名
+            System.out.println(maps.size());
             if (maps == null || maps.size() <= 0) throw new RuntimeException("要读取的Excel的格式不正确，检查是否设定了合适的行");//与order顺序不符
             for (int i = readLine + 1; i <= sheet.getLastRowNum() - tailLine; i++) {     //取数据
                 row = sheet.getRow(i);
@@ -281,7 +282,12 @@ public class ExcelUtil {
                     String mn = maps.get(ci).substring(3);  //消除get
                     mn = mn.substring(0, 1).toLowerCase() + mn.substring(1);
                     Map<String, Object> params = new HashMap<String, Object>();
-                    BeanUtils.copyProperty(obj, mn, this.getCellValue(c));
+                    if (this.getCellValue(c).trim().equals("是")) {
+                        BeanUtils.copyProperty(obj, mn, 1);
+                    } else if (this.getCellValue(c).trim().equals("否")) {
+                        BeanUtils.copyProperty(obj, mn, 0);
+                    } else
+                        BeanUtils.copyProperty(obj, mn, this.getCellValue(c));
                 }
                 objs.add(obj);
             }
