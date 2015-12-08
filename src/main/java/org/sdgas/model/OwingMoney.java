@@ -2,7 +2,6 @@ package org.sdgas.model;
 
 import org.sdgas.util.ExcelResources;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,11 +26,6 @@ public class OwingMoney {
      * 用户名
      */
     private String userName;
-
-    /**
-     * 用气地址
-     */
-    private String userAdd;
 
     /**
      * 镇街
@@ -91,7 +85,6 @@ public class OwingMoney {
 
     @Id
     @GeneratedValue
-    @ExcelResources(order = 1, title = "序号")
     public int getId() {
         return id;
     }
@@ -100,8 +93,7 @@ public class OwingMoney {
         this.id = id;
     }
 
-    @Column
-    @ExcelResources(order = 2, title = "用户号")
+    @ExcelResources(order = 1, title = "用户号")
     public String getUserId() {
         return userId;
     }
@@ -110,6 +102,7 @@ public class OwingMoney {
         this.userId = userId;
     }
 
+    @ExcelResources(order = 2, title = "用户名")
     public String getUserName() {
         return userName;
     }
@@ -118,14 +111,7 @@ public class OwingMoney {
         this.userName = userName;
     }
 
-    public String getUserAdd() {
-        return userAdd;
-    }
-
-    public void setUserAdd(String userAdd) {
-        this.userAdd = userAdd;
-    }
-
+    @ExcelResources(order = 3, title = "镇街")
     public String getTown() {
         return town;
     }
@@ -134,6 +120,7 @@ public class OwingMoney {
         this.town = town;
     }
 
+    @ExcelResources(order = 4, title = "欠费金额")
     public double getOwingMoney() {
         return owingMoney;
     }
@@ -142,6 +129,7 @@ public class OwingMoney {
         this.owingMoney = owingMoney;
     }
 
+    @ExcelResources(order = 5, title = "联系电话")
     public String getTel() {
         return tel;
     }
@@ -150,6 +138,7 @@ public class OwingMoney {
         this.tel = tel;
     }
 
+    @ExcelResources(order = 6, title = "录入日期")
     public String getEnterDate() {
         return enterDate;
     }
@@ -158,6 +147,7 @@ public class OwingMoney {
         this.enterDate = enterDate;
     }
 
+    @ExcelResources(order = 7, title = "录入人")
     public String getEnterUser() {
         return enterUser;
     }
@@ -166,6 +156,7 @@ public class OwingMoney {
         this.enterUser = enterUser;
     }
 
+    @ExcelResources(order = 8, title = "欠费内容")
     public String getContent() {
         return content;
     }
@@ -174,6 +165,7 @@ public class OwingMoney {
         this.content = content;
     }
 
+    @ExcelResources(order = 9, title = "已缴费")
     public int getPay() {
         return pay;
     }
@@ -182,6 +174,7 @@ public class OwingMoney {
         this.pay = pay;
     }
 
+    @ExcelResources(order = 10, title = "缴费日期")
     public String getPayDate() {
         return payDate;
     }
@@ -190,6 +183,7 @@ public class OwingMoney {
         this.payDate = payDate;
     }
 
+    @ExcelResources(order = 11, title = "欠费账期")
     public int getAccountPeriod() {
         return accountPeriod;
     }
@@ -198,6 +192,7 @@ public class OwingMoney {
         this.accountPeriod = accountPeriod;
     }
 
+    @ExcelResources(order = 12, title = "备注")
     public String getRemark() {
         return remark;
     }
@@ -206,6 +201,7 @@ public class OwingMoney {
         this.remark = remark;
     }
 
+    @ExcelResources(order = 13, title = "账期数")
     public String getPeriod() {
         return period;
     }
