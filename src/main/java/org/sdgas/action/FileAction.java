@@ -51,8 +51,9 @@ public class FileAction extends MyActionSupport implements ModelDriven<FileVO> {
                 owingMoneys.add((OwingMoney) anObj);
             }
             for (OwingMoney o : owingMoneys) {
-                OwingMoney owingMoney = new OwingMoney();
-                if (owingMoneyService.findByMsg(o.getUserId(), o.getContent()) == null) {
+                OwingMoney owingMoney = owingMoneyService.findByMsg(o.getUserId(), o.getContent().trim());
+                if (owingMoney == null) {
+                    owingMoney = new OwingMoney();
                     owingMoney.setContent(o.getContent());
                     owingMoney.setEnterDate(o.getEnterDate());
                     owingMoney.setEnterUser(o.getEnterUser());
@@ -82,7 +83,7 @@ public class FileAction extends MyActionSupport implements ModelDriven<FileVO> {
                     owingMoney.setUserId(o.getUserId());
                     owingMoney.setUserName(o.getUserName());
                     owingMoney.setTown(o.getTown());
-                   // owingMoney.setPeriod(o.getPeriod());
+                    // owingMoney.setPeriod(o.getPeriod());
                     owingMoney.setAccountPeriod(o.getAccountPeriod());
                     owingMoneyService.update(owingMoney);
                     logger.info(user.getUserName() + ",更新用户欠费信息(" + owingMoney.getUserId() + " " + owingMoney.getUserName()

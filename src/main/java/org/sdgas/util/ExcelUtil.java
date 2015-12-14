@@ -2,6 +2,8 @@ package org.sdgas.util;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
+import org.apache.poi.hssf.usermodel.HSSFDataFormat;
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
@@ -16,7 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
+
+import static org.apache.poi.ss.usermodel.Cell.CELL_TYPE_FORMULA;
 
 
 /**
@@ -249,11 +255,29 @@ public class ExcelUtil {
             case Cell.CELL_TYPE_BOOLEAN:
                 o = String.valueOf(c.getBooleanCellValue());
                 break;
-            case Cell.CELL_TYPE_FORMULA:
+            case CELL_TYPE_FORMULA:
                 o = String.valueOf(c.getCellFormula());
                 break;
             case Cell.CELL_TYPE_NUMERIC:
-                o = String.valueOf(c.getNumericCellValue());
+                if (HSSFDateUtil.isCellDateFormatted(c)) {// 处理日期格式、时间格式
+                    SimpleDateFormat sdf;
+                    if (c.getCellStyle().getDataFormat() == HSSFDataFormat
+                            .getBuiltinFormat("h:mm")) {
+                        sdf = new SimpleDateFormat("HH:mm");
+                    } else {// 日期
+                        sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    }
+                    Date date = c.getDateCellValue();
+                    o = sdf.format(date).equals("1899-12-31") ? "" : sdf.format(date);
+
+                } else if (c.getCellStyle().getDataFormat() == 58) {
+                    // 处理自定义日期格式：m月d日(通过判断单元格的格式id解决，id的值是58)
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    double value = c.getNumericCellValue();
+                    Date date = org.apache.poi.ss.usermodel.DateUtil
+                            .getJavaDate(value);
+                    o = sdf.format(date);
+                }
                 break;
             case Cell.CELL_TYPE_STRING:
                 o = c.getStringCellValue();
@@ -272,7 +296,6 @@ public class ExcelUtil {
             Row row = sheet.getRow(readLine);  //开始行，主题栏
             objs = new ArrayList<Object>();
             Map<Integer, String> maps = getHeaderMap(row, clz);   //设定对应的字段顺序与方法名
-            System.out.println(maps.size());
             if (maps == null || maps.size() <= 0) throw new RuntimeException("要读取的Excel的格式不正确，检查是否设定了合适的行");//与order顺序不符
             for (int i = readLine + 1; i <= sheet.getLastRowNum() - tailLine; i++) {     //取数据
                 row = sheet.getRow(i);
@@ -282,6 +305,10 @@ public class ExcelUtil {
                     String mn = maps.get(ci).substring(3);  //消除get
                     mn = mn.substring(0, 1).toLowerCase() + mn.substring(1);
                     Map<String, Object> params = new HashMap<String, Object>();
+                    if (!"enterDate".equals(mn))
+                        c.setCellType(Cell.CELL_TYPE_STRING);//设置单元格格式
+                    else
+                        c.setCellType(Cell.CELL_TYPE_NUMERIC);
                     if (this.getCellValue(c).trim().equals("是")) {
                         BeanUtils.copyProperty(obj, mn, 1);
                     } else if (this.getCellValue(c).trim().equals("否")) {

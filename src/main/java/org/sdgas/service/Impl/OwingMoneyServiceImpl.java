@@ -20,7 +20,7 @@ public class OwingMoneyServiceImpl extends DaoSupport<OwingMoney> implements Owi
     public OwingMoney findByMsg(String userId, String content) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("userId", userId);
-        params.put("content", content);
+        params.put("content", content.trim());
         return (OwingMoney) this.findSpecialObject(OwingMoney.class, params);
     }
 }
