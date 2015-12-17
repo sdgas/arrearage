@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,5 +23,12 @@ public class OwingMoneyServiceImpl extends DaoSupport<OwingMoney> implements Owi
         params.put("userId", userId);
         params.put("content", content.trim());
         return (OwingMoney) this.findSpecialObject(OwingMoney.class, params);
+    }
+
+    @Override
+    public List<OwingMoney> findByUserId(String userId) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("userId", userId);
+        return this.findByFields(OwingMoney.class, params);
     }
 }

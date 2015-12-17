@@ -62,11 +62,11 @@
             </li>
             <li class="divider"></li>
             <li>
-                <a href="#"> 处理欠费记录 </a>
+                <a href="OwingMoney.action"> 处理欠费记录 </a>
             </li>
             <li class="divider"></li>
             <li>
-                <a href="#"> 生成欠费报表 </a>
+                <a href="<%=basePath%>/page/core/#"> 生成欠费报表 </a>
             </li>
         </ul>
     </div>

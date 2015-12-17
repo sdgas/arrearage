@@ -19,21 +19,17 @@ public class FileDownloadAction extends ActionSupport implements ModelDriven<Fil
 
     private final FileVO fileVO = new FileVO();
     private Logger logger = LogManager.getLogger(FileDownloadAction.class);
-    private final static String SAVE_PATH_DIR = "D:/contract/attachment/";
+    private final static String SAVE_PATH_DIR = "D:/arrearage/uploadFile/";
 
     //返回一个输入流，作为一个客户端来说是一个输入流，但对于服务器端是一个 输出流
     public InputStream getDownloadFile() throws Exception {
         String filePath;
         File file = null;
-        if (fileVO.getFlag() == 1) {
-            filePath = SAVE_PATH_DIR + fileVO.getFileName();
-            file = new File(filePath);
-            fileVO.setFileName(WebTool.changeCharset(fileVO.getFileName(),"ISO-8859-1"));
-        } else {
-            filePath = SAVE_PATH_DIR + "/policy/ContractManagementProcess.pdf";
-            file = new File(filePath);
-            fileVO.setFileName("ContractManagementProcess.pdf");
-        }
+
+        filePath = SAVE_PATH_DIR + fileVO.getFileName();
+        file = new File(filePath);
+        fileVO.setFileName(WebTool.changeCharset(fileVO.getFileName(), "ISO-8859-1"));
+
         return new FileInputStream(file);
 
     }
